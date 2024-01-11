@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
+use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/users', function () {
+    return view('users.index');
+})->name('users.index');
+
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+
+Route::get('/tutorial', function () {
+    return view('tutorial');
+})->name('tutorial');
+
+
+Route::get('/articles', ArticleController::class)->name('articles');
